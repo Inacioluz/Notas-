@@ -2,21 +2,22 @@ import java.util.Scanner;
 public class Notas {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("Digite a nota A1 (máx 30): ");
-        double A1 = scanner.nextDouble();
-        
-        System.out.print("Digite a nota A2 (máx 30): ");
-        double A2 = scanner.nextDouble();
-        
-        System.out.print("Digite a nota A3 (máx 40): ");
-        double A3 = scanner.nextDouble();
+        double[] notas = new double[3];
+        double[] limites = {30, 30, 40}; 
+        String[] nomesNotas = {"A1", "A2", "A3"};
 
-        if (A1 > 30 || A2 > 30 || A3 > 40) {
-            System.out.println("Erro: As notas inseridas estão fora dos limites permitidos.");
-        } else {
-            double notaFinal = A1 + A2 + A3;
-            System.out.println("Nota final: " + notaFinal);
+        for (int i = 0; i < 3; i++) {
+            do {
+                System.out.print("Digite a nota " + nomesNotas[i] + " (máx " + limites[i] + "): ");
+                notas[i] = scanner.nextDouble();
+                if (notas[i] > limites[i]) {
+                    System.out.println("Erro: A nota " + nomesNotas[i] + " não pode ser maior que " + limites[i] + ". Por favor, insira novamente.");
+                }
+            } while (notas[i] > limites[i]);
         }
+
+
+        double notaFinal = notas[0] + notas[1] + notas[2];
+        System.out.println("Nota final: " + notaFinal);
     }
 }
